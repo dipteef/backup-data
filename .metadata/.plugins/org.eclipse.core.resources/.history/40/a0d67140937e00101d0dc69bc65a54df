@@ -1,0 +1,18 @@
+package com.api.pojos;
+
+public class UserLoginRequest {
+
+	    private String mobileNumber;
+	    private String firebaseToken;
+	    private boolean isVerified;
+	    private String deviceId;
+
+	    // Getters and setters for all fields
+	    public String getMobileNumber() {
+	        return mobileNumber;
+	    }
+	    public void setPhoneNumber(String mobileNumber) {
+	        this.mobileNumber = mobileNumber;
+	    }
+	    
+}

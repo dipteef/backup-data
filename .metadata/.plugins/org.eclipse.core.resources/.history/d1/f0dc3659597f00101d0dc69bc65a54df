@@ -1,0 +1,43 @@
+package pagePackage;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import basePackage.BaseTest;
+import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.AndroidDriver;
+
+public class BusinessLoanPage extends BaseTest{
+	
+	public BusinessLoanPage(AndroidDriver driver) {
+		this.driver= driver;
+	}
+	
+	String BusinessLoan_xpath="Business\nLoan";
+	String Consent_xpath = "android.widget.CheckBox";
+	String ExploreOffers_xpath = "//android.widget.Button[@content-desc=\"Explore Offers\"]";
+	
+	public void BusinessLoan() throws InterruptedException {
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20)); 
+
+		WebElement businessloan = wait.until(ExpectedConditions.elementToBeClickable(
+		        new AppiumBy.ByAccessibilityId(BusinessLoan_xpath)));
+		
+		businessloan.click();
+		
+		Thread.sleep(2000);
+		WebElement checkbox = wait.until(ExpectedConditions.elementToBeClickable(By.className(Consent_xpath)));
+		checkbox.click();
+		
+		Thread.sleep(2000);
+		WebElement offers = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ExploreOffers_xpath)));
+		offers.click();
+		
+	}
+
+}

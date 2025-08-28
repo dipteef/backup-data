@@ -1,0 +1,62 @@
+package pagePackage;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import basePackage.BaseTest;
+import io.appium.java_client.android.AndroidDriver;
+
+
+public class PanNumberEnterPage extends BaseTest {
+	
+	public PanNumberEnterPage(AndroidDriver driver) {
+		this.driver= driver;
+	}
+	
+	String panNumber= "AALCK0617R";
+	String Panedittext_xpath= "//android.view.View[@content-desc=\"eg. ABCDE1234F\"]";
+//	String Panedittext_xpath = "android.widget.EditText";
+	String Checkbox_xpath= "android.widget.CheckBox";
+	String Verifybutton_xpath="//android.widget.Button[@content-desc=\"Verify\"]";
+	String Yesbutton_xpath="//android.widget.Button[@content-desc=\"YES\"]";
+	
+	  private void enterPanNumberByChar(WebElement element, String panNumber) {
+	        for (char c : panNumber.toCharArray()) {
+	            element.sendKeys(String.valueOf(c));
+	        }
+	    }
+	
+	public void PanNumber() throws InterruptedException {
+		    WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(20));
+	        WebElement panEditText = wait2.until(ExpectedConditions.elementToBeClickable(By.xpath(Panedittext_xpath)));
+	        //		wait2.until(ExpectedConditions.elementToBeClickable(By.xpath(Panedittext_xpath)));
+	     	panEditText.click();
+	     	Thread.sleep(5000);
+	     	((MobileElement) panEditText).setValue(panNumber);
+//	     	enterPanNumberByChar(panEditText, panNumber);
+	        System.out.println("Entered PAN number: " + panNumber);
+	       	driver.hideKeyboard();
+	       	
+	       	Thread.sleep(5000);
+	       	WebElement checkbox = wait2.until(ExpectedConditions.elementToBeClickable(By.className(Checkbox_xpath)));
+	     	checkbox.click();
+	       	
+	        Thread.sleep(5000);
+	        WebElement verifyButton = wait2.until(ExpectedConditions.elementToBeClickable(By.xpath(Verifybutton_xpath)));
+	        verifyButton.click();
+	     	 	
+			  
+			Thread.sleep(5000);
+			WebElement yesButton = wait2.until(ExpectedConditions.elementToBeClickable(By.xpath(Yesbutton_xpath)));
+			yesButton.click();
+
+		
+		
+	}
+
+}

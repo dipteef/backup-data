@@ -1,0 +1,33 @@
+package testPackage;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.testng.annotations.Test;
+
+import basePackage.BaseTest;
+import pagePackage.LoginPage;
+import pagePackage.OnboardingScreen1Page;
+
+public class LoginTest extends BaseTest{
+	 
+	
+	@Test
+	public void Test1() throws InterruptedException {
+//		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+		OnboardingScreen1Page onboarding= new OnboardingScreen1Page(driver);
+		onboarding.nextButtonClick();
+		onboarding.nextButtonClick();
+		onboarding.nextButtonClick();
+		LoginPage mobileNumber= new LoginPage(driver);
+		mobileNumber.enterMobileNumber("9689698026");
+		
+		
+		
+	}
+	
+	
+
+
+}

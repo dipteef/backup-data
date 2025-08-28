@@ -1,0 +1,77 @@
+package pagePackage;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import basePackage.BaseTest;
+import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.AndroidDriver;
+
+public class PersonalDetailsRelativeInfoPage extends BaseTest{
+	
+	public PersonalDetailsRelativeInfoPage(AndroidDriver driver) {
+		this.driver=driver;
+	}
+
+	String EditField_xpath= "android.widget.EditText";
+	String Relative1type_xpath = "(//android.view.View[@content-desc=\"Select Relationship Type\"])[1]";
+//	String Relative1type_xpath= "//android.widget.ScrollView/android.view.View[3]";
+	String Relative2type_xpath= "(//android.view.View[@content-desc=\"Select Relationship Type\"])[2]";
+//	String Relative2type_xpath= "//android.widget.ScrollView/android.view.View[5]";
+	String Friend_xpath= "//android.view.View[@content-desc=\"Friend\"]";
+	String ContinueButton_xpath="//android.widget.Button[@content-desc=\"Continue\"]";
+	
+	public void RelativeInfo() {
+	   	   WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+	       List<WebElement> editTextFields = driver.findElements(By.className(EditField_xpath));
+           System.out.println("Number of EditText fields found: " + editTextFields.size());
+
+	        if (editTextFields.size() >= 4) {
+	        	  WebElement relative1nameField = wait.until(ExpectedConditions.elementToBeClickable(editTextFields.get(0)));
+	        	  relative1nameField.click();
+	        	  relative1nameField.sendKeys("Rahul");
+		          driver.hideKeyboard();
+		          
+		          WebElement relative1typeField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Relative1type_xpath)));
+		          relative1typeField.click();
+		          WebElement element1 = driver.findElement(AppiumBy.androidUIAutomator(
+		           "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"Friend\"))"));
+		          element1.click();
+		          
+		          WebElement relative1numberField = wait.until(ExpectedConditions.elementToBeClickable(editTextFields.get(1)));
+		          relative1numberField.click();
+		          relative1numberField.sendKeys("8888888801");
+		          driver.hideKeyboard();
+		          
+		          WebElement relative2nameField = wait.until(ExpectedConditions.elementToBeClickable(editTextFields.get(2)));
+	        	  relative2nameField.click();
+	        	  relative2nameField.sendKeys("Yash");
+		          driver.hideKeyboard();
+		          
+		          WebElement relative2typeField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Relative2type_xpath)));
+		          relative2typeField.click();
+		          WebElement element2 = driver.findElement(AppiumBy.androidUIAutomator(
+		           "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"Friend\"))"));
+		          element1.click();
+		          
+		          
+		          WebElement relative2numberField = wait.until(ExpectedConditions.elementToBeClickable(editTextFields.get(3)));
+		          relative2numberField.click();
+		          relative2numberField.sendKeys("8888888802");
+		          driver.hideKeyboard();
+		          
+		          WebElement continueButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ContinueButton_xpath)));
+		          continueButton.click();
+		          
+		          
+	        }
+
+           
+	}
+	
+}

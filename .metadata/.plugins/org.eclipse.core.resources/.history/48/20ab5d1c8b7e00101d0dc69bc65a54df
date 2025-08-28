@@ -1,0 +1,22 @@
+package com.api.tests;
+
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+
+public class AppVersion {
+	
+	@Test
+	public void testApi() {
+		
+		RestAssured.baseURI= "https://lightcyan-tiger-569435.hostingersite.com/";
+		
+		given()
+		  .header("Content-Type", "application/json")
+		.when()
+		  .post("/api/v1/checkAppVersion")
+		.then()
+		   .statusCode(200)
+	}
+
+}

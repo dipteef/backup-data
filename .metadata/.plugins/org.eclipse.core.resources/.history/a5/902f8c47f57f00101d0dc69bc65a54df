@@ -1,0 +1,7 @@
+package pagePackage;
+
+import basePackage.BaseTest;
+
+public class UpdateIncomePage extends BaseTest{
+
+}

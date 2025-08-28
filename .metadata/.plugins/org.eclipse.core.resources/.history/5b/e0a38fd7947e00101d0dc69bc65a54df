@@ -1,0 +1,37 @@
+package com.api.tests;
+
+import static io.restassured.RestAssured.given;
+
+import org.testng.annotations.Test;
+
+import baseApiPackage.BaseTest;
+
+public class Login extends BaseTest{
+	
+	@Test
+	public void testApi() {
+		
+//		RestAssured.baseURI= "https://lightcyan-tiger-569435.hostingersite.com/";
+		// Create an instance of the POJO
+        UserLoginRequest user = new UserLoginRequest();
+        
+        // Set the values for all parameters
+        user.setMobileNumber("1234567890");
+        user.setFirebaseToken("your_firebase_token_here");
+        user.setVerified(true);
+        user.setWhatsappNotification(false);
+        user.setDeviceId("device_1234");
+        user.setDeviceInfo("Android 14");
+        
+		given()
+		  .contentType("application/json")
+		  .body(user)
+		.when()
+		  .post("/auth/login")
+		.then()
+		   .statusCode(200)
+		   .log().all();
+		
+	}
+
+}

@@ -1,0 +1,16 @@
+package testPackage;
+
+import org.testng.annotations.Test;
+
+import basePackage.BaseTest;
+
+public class RegistrationTest extends BaseTest{
+
+	@Test
+	public void test1() {
+		
+		
+		
+	}
+	
+}

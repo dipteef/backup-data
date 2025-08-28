@@ -1,0 +1,56 @@
+package pagePackage;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import basePackage.BaseTest;
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.android.AndroidDriver;
+
+public class ContactUsPage extends BaseTest{
+
+	public ContactUsPage(AndroidDriver driver) {
+		this.driver= driver;
+	}
+	
+	String ContactUs_xpath = "//android.widget.ImageView[@content-desc=\"Contact Us\"]";
+	String EditTextField_xpath = "android.widget.EditText";
+	String SubmitButton_xpath = "//android.widget.Button[@content-desc=\"Submit\"]";
+	
+	public void ContactUs() {
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20)); 
+		driver.findElement(MobileBy.AndroidUIAutomator(
+			    "new UiScrollable(new UiSelector().scrollable(true))" +
+			    ".scrollForward()"));
+		WebElement contactUs= wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ContactUs_xpath)));
+		contactUs.click();
+		
+		List<WebElement> editTextFields = driver.findElements(By.className(EditTextField_xpath));
+        System.out.println("Number of EditText fields found: " + editTextFields.size());
+
+        // Check if the list contains the required number of elements before interacting
+        if (editTextFields.size() >= 2) {
+
+            WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(editTextFields.get(0)));
+            emailField.click();
+            emailField.sendKeys("kgil@gmail.com");
+            driver.hideKeyboard();
+            
+            WebElement messageField = wait.until(ExpectedConditions.elementToBeClickable(editTextFields.get(1)));
+            messageField.click();
+            messageField.sendKeys("Not able to do the payment");
+            driver.hideKeyboard();
+            
+            WebElement submit = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(SubmitButton_xpath)));
+            submit.click();
+            
+        }
+	}
+	
+}

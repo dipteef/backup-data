@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;pagePackage.PromoPopUp&apos; to &apos;PromoPopUpPage&apos;&#x0D;&#x0A;- Original project: &apos;Swipeloanapp&apos;&#x0D;&#x0A;- Original element: &apos;pagePackage.PromoPopUp&apos;&#x0D;&#x0A;- Renamed element: &apos;pagePackage.PromoPopUpPage&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;PromoPopUp&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/test\/java=/optional=/true=/=/maven.pomderived=/true=/=/test=/true=/&lt;pagePackage{PromoPopUp.java[PromoPopUp" matchStrategy="1" name="PromoPopUpPage" qualified="false" references="true" similarDeclarations="false" stamp="1754547434135" textual="false" version="1.0"/>
+</session>

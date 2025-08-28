@@ -1,0 +1,108 @@
+package pagePackage;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import basePackage.BaseTest;
+import io.appium.java_client.android.AndroidDriver;
+
+public class LoginPage extends BaseTest {
+
+
+	 private AndroidDriver driver;
+	    private WebDriverWait wait;
+
+	    // Locators (kept as By, not WebElement to avoid staleness)
+	    private By mobileNumberField = By.xpath("//android.view.View[@content-desc=\"+91 Enter 10 Digit Mobile Number\"]/android.widget.EditText");
+	    private By getStartedButton = By.xpath("//android.widget.Button[@content-desc='Get Started']");
+	    private By termsAndConditionsCheckbox = By.xpath("//android.widget.FrameLayout[@resource-id='android:id/content']/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.CheckBox[1]");
+	    private By whatsAppCheckbox = By.xpath("//android.widget.FrameLayout[@resource-id='android:id/content']/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.CheckBox[2]");
+
+	    String EditTextField_xpath="android.widget.EditText";
+	    String referralCode_xpath = "";
+	    
+	    // Constructor
+	    public LoginPage(AndroidDriver driver) {
+	        this.driver = driver;
+	        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+	    }
+
+	    // Action Method
+	    public void enterMobileNumber(String mobileNumber) throws InterruptedException {
+	    	
+	    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+			
+			List<WebElement> editTextFields = driver.findElements(By.className(EditTextField_xpath));
+	        System.out.println("Number of EditText fields found: " + editTextFields.size());
+	    	
+	        if (editTextFields.size() >= 1) {
+
+	            // Enter Phone Number (Adjust index if necessary)
+	            WebElement phoneField = wait.until(ExpectedConditions.elementToBeClickable(editTextFields.get(0)));
+	            phoneField.click();
+	            phoneField.sendKeys("7757933391");
+	            driver.hideKeyboard();
+	/*        
+	            WebElement referralCode = wait.until(ExpectedConditions.elementToBeClickable(editTextFields.get(1)));
+	            referralCode.click();
+	            referralCode.sendKeys("SWP");
+	            driver.hideKeyboard();
+*/
+	        // Click Terms & Conditions checkbox
+/*	        WebElement termsCheckbox = wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(termsAndConditionsCheckbox)));
+	        termsCheckbox.click();
+
+	        // Click WhatsApp checkbox
+	        WebElement whatsappCheckbox = wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(whatsAppCheckbox)));
+	        whatsappCheckbox.click();
+*/
+	        }
+	        Thread.sleep(2000);
+	        // Click Get Started button
+	        WebElement startButton = wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(getStartedButton)));
+	        startButton.click();
+	    }
+	
+	
+	
+	
+	
+	
+	/*
+	public LoginPage(AndroidDriver driver) {
+		this.driver=driver;
+	}
+	
+	String MobileNumber_xpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView";
+	String GetStartedButton_xpath="//android.widget.Button[@content-desc=\"Get Started\"]";
+	String TermsAndConditionsCheckbox_xpath="//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.CheckBox[1]";
+	String WhatsAppCheckbox_xpath="//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.CheckBox[2]";
+	
+	public void enterMobileNumber(String mobileNumber) throws InterruptedException {
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		
+		WebElement mobileNumber_element= wait.until(ExpectedConditions.elementToBeClickable(By.xpath(MobileNumber_xpath)));
+		mobileNumber_element.click();
+		mobileNumber_element.sendKeys(mobileNumber);
+		driver.hideKeyboard();
+		
+		WebElement checkbox= wait.until(ExpectedConditions.elementToBeClickable(By.xpath(TermsAndConditionsCheckbox_xpath)));
+		checkbox.click();
+		
+		WebElement WhatsappCheckbox= wait.until(ExpectedConditions.elementToBeClickable(By.xpath(WhatsAppCheckbox_xpath)));
+		WhatsappCheckbox.click();
+		
+		WebElement getstartedbutton_element= wait.until(ExpectedConditions.elementToBeClickable(By.xpath(GetStartedButton_xpath)));
+		getstartedbutton_element.click();
+		
+		}
+	*/
+
+}

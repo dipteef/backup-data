@@ -1,0 +1,35 @@
+package pagePackage;
+
+import java.time.Duration;
+
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import basePackage.BaseTest;
+import io.appium.java_client.android.AndroidDriver;
+
+public class EducationLoanFormPage extends BaseTest{
+
+	public EducationLoanFormPage(AndroidDriver driver) {
+		this.driver= driver;
+	}
+	
+	String LoanAmount_xpath = "android.widget.EditText";
+	String CourseType_xpath = "//android.view.View[@content-desc=\"Select Course Type\"]";
+	String PG_CourseType_xpath = "//android.view.View[@content-desc=\"Postgraduate Programs (PG)\"]";
+	String CoApplicantRelationship_xpath = "//android.view.View[@content-desc=\"Select Co-applicant Relationship\"]";
+	String Parent_xpath ="//android.view.View[@content-desc=\"Parent (Father / Mother)\"]";
+	String Qualification_xpath = "//android.view.View[@content-desc=\"Select Educational Qualification\"]";
+	String Search_xpath= "//android.widget.EditText";
+	String SchoolLevel_xpath = "//android.widget.EditText/android.view.View/android.view.View/android.view.View[1]/android.widget.CheckBox";
+	String UG_xpath = "//android.widget.EditText/android.view.View/android.view.View/android.view.View[2]/android.widget.CheckBox";
+	String OkButton_xpath = "//android.widget.Button[@content-desc=\"OK\"]";
+	String ContinueButton_xpath = "//android.widget.Button[@content-desc=\"Continue\"]";
+	
+	public void EducationLoanForm() {
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20)); 
+		
+		
+	}
+	
+}

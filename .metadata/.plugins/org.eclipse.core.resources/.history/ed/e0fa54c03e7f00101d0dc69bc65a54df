@@ -1,0 +1,20 @@
+package pagePackage;
+
+import org.openqa.selenium.By;
+
+import basePackage.BaseTest;
+import io.appium.java_client.android.AndroidDriver;
+
+public class PanNumberVerifyPage extends BaseTest {
+	
+	public PanNumberVerifyPage(AndroidDriver driver) {
+		this.driver= driver;
+	}
+
+	String PanVerifyButton_xpath="//android.widget.Button[@content-desc=\"Proceed\"]";
+	
+	public void Pannumber() throws InterruptedException {
+		  Thread.sleep(4000);
+		  driver.findElement(By.xpath(PanVerifyButton_xpath)).click();
+	}
+}

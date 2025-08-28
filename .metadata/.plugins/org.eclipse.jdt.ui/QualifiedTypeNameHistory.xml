@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.openqa.selenium.WebDriver"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.chrome.ChromeDriver"/>
+    <fullyQualifiedTypeName name="pagePackage.HomeScreenCheckEligibilityPage"/>
+    <fullyQualifiedTypeName name="pagePackage.CreditScorePlanPage"/>
+    <fullyQualifiedTypeName name="pagePackage.PaymentPayPage"/>
+    <fullyQualifiedTypeName name="pagePackage.HomeScreenCompleteApplicationPage"/>
+    <fullyQualifiedTypeName name="pagePackage.PanNumberKycPage"/>
+    <fullyQualifiedTypeName name="pagePackage.AadhaarNumberVerifyPage"/>
+    <fullyQualifiedTypeName name="pagePackage.SelfieVerificationPage"/>
+    <fullyQualifiedTypeName name="pagePackage.UploadBankDetailsPage"/>
+    <fullyQualifiedTypeName name="pagePackage.IncomeAmountPage"/>
+    <fullyQualifiedTypeName name="pagePackage.IncomeCompanyDetailsPage"/>
+    <fullyQualifiedTypeName name="pagePackage.IncomeRelationshipStatusPage"/>
+    <fullyQualifiedTypeName name="pagePackage.InstantFundPage"/>
+    <fullyQualifiedTypeName name="pagePackage.BusinessLoanPage"/>
+    <fullyQualifiedTypeName name="pagePackage.BusinessLoanFormPage"/>
+    <fullyQualifiedTypeName name="pagePackage.HomeLoanPage"/>
+    <fullyQualifiedTypeName name="pagePackage.HomeLoanFormPage"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.WebElement"/>
+    <fullyQualifiedTypeName name="pagePackage.EducationLoanPage"/>
+    <fullyQualifiedTypeName name="pagePackage.LoanAgainstPropertyPage"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.support.ui.ExpectedConditions"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.By"/>
+    <fullyQualifiedTypeName name="pagePackage.EducationLoanFormPage"/>
+    <fullyQualifiedTypeName name="pagePackage.LoanAgainstPropertyFormPage"/>
+    <fullyQualifiedTypeName name="pagePackage.ProfilePage"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,88 @@
+package pagePackage;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import basePackage.BaseTest;
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.android.AndroidDriver;
+
+public class EducationLoanFormPage extends BaseTest{
+
+	public EducationLoanFormPage(AndroidDriver driver) {
+		this.driver= driver;
+	}
+	
+	String LoanAmount_xpath = "android.widget.EditText";
+	String CourseType_xpath = "//android.widget.Button[@content-desc=\"Select Course Type\"]";
+	String PG_CourseType_xpath = "//android.view.View[@content-desc=\"Postgraduate Programs (PG)\"]";
+	String CoApplicantRelationship_xpath = "//android.widget.Button[@content-desc=\"Select Co-applicant Relationship\"]";
+	String Parent_xpath ="//android.view.View[@content-desc=\"Parent (Father / Mother)\"]";
+	String Qualification_xpath = "//android.widget.Button[@content-desc=\"Select Educational Qualification\"]";
+	String Search_xpath= "//android.widget.EditText";
+	String SchoolLevel_xpath = "//android.widget.EditText/android.view.View/android.view.View/android.view.View[1]/android.widget.CheckBox";
+	String UG_xpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.widget.EditText/android.view.View/android.view.View/android.view.View[2]/android.widget.CheckBox";
+	String OkButton_xpath = "//android.widget.Button[@content-desc=\"OK\"]";
+	String ContinueButton_xpath = "//android.widget.Button[@content-desc=\"Continue\"]";
+	
+	public void EducationLoanForm() throws InterruptedException {
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20)); 
+		
+		WebElement loanAmount= wait.until(ExpectedConditions.elementToBeClickable(By.className(LoanAmount_xpath)));
+		loanAmount.click();
+		loanAmount.sendKeys("7000000");
+		driver.hideKeyboard();
+		
+		WebElement courseType = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(CourseType_xpath)));
+		courseType.click();
+		WebElement pgType = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(PG_CourseType_xpath)));
+		pgType.click();
+		
+		WebElement relationship = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(CoApplicantRelationship_xpath)));
+		relationship.click();
+		WebElement parent = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Parent_xpath)));
+		parent.click();
+		
+		driver.findElement(MobileBy.AndroidUIAutomator(
+			    "new UiScrollable(new UiSelector().scrollable(true))" +
+			    ".scrollForward()"));
+		
+		WebElement qualification = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Qualification_xpath)));
+		qualification.click();
+		
+		WebElement schoolLevel = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(SchoolLevel_xpath)));
+		schoolLevel.click();
+		WebElement ug = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(UG_xpath)));
+		ug.click();
+
+		driver.findElement(MobileBy.AndroidUIAutomator(
+			    "new UiScrollable(new UiSelector().scrollable(true))" +
+			    ".scrollForward()"));
+		
+		/*
+		WebElement schoolLevel = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Search_xpath)));
+		schoolLevel.click();
+		schoolLevel.sendKeys("school level");
+		driver.findElement(By.className("android.widget.CheckBox")).click();
+		WebElement ug = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(Search_xpath)));
+		ug.click();
+		ug.sendKeys("Undergraduate");
+		driver.findElement(By.className("android.widget.CheckBox")).click();
+	*/	
+//		driver.findElement(By.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View[2]")).click();
+		
+		WebElement okButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(OkButton_xpath)));
+		okButton.click();
+	
+		Thread.sleep(2000);
+		WebElement ContinueButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ContinueButton_xpath)));
+		ContinueButton.click();
+		
+	}
+	
+}

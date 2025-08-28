@@ -1,0 +1,138 @@
+package pagePackage;
+
+import java.time.Duration;
+import java.util.Collections;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import basePackage.BaseTest;
+import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.AndroidDriver;
+
+public class PersonalDetailsNamePage extends BaseTest {
+	
+	public PersonalDetailsNamePage(AndroidDriver driver) {
+		this.driver= driver;
+	}
+	
+	String EditTextField_xpath="android.widget.EditText";
+	String SelectEmail_xpath="//android.widget.ScrollView/android.view.View[7]";
+	String EmailList_xpath= "//android.widget.LinearLayout[@resource-id='com.google.android.gms:id/account_picker_container']";
+	String SelectGender_xpath= "//android.view.View[@hint='Select Gender']";
+	String FemaleGender_xpath= "//android.view.View[@content-desc='Female']";
+	String ContinueButton_xpath= "//android.view.View[@content-desc='Continue']";
+	String Female_xpath="//android.widget.ScrollView/android.widget.RadioButton[2]";
+	String Continue_xpath= "Continue";
+	String Agree_xpath = "//android.widget.Button[@resource-id=\"com.google.android.gms:id/agree_and_share_button\"]";
+	String Dob_xpath = "";
+	String EditDob_xpath = "//android.view.View[@content-desc=\"SELECT DATE Fri, Aug 22\"]/android.widget.Button";
+	String EnterDob_xpath = "android.widget.EditText";
+	String okButton_xpath = "//android.widget.Button[@content-desc=\"OK\"]";
+	
+	public void Name() {
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+//		WebElement nextButton= wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(NextButton_xpath)));
+		
+		List<WebElement> editTextFields = driver.findElements(By.className(EditTextField_xpath));
+        System.out.println("Number of EditText fields found: " + editTextFields.size());
+
+        // Check if the list contains the required number of elements before interacting
+        if (editTextFields.size() >= 1) {
+
+            // Enter Phone Number (Adjust index if necessary)
+            WebElement phoneField = wait.until(ExpectedConditions.elementToBeClickable(editTextFields.get(0)));
+            phoneField.click();
+            phoneField.sendKeys("8888888888");
+            driver.hideKeyboard();
+
+          
+            WebElement emailField = (WebElement) driver.findElement(By.xpath(SelectEmail_xpath));
+
+            if (emailField.isDisplayed() || emailField.isEnabled()) {
+                emailField.click();
+            } else {
+                System.out.println("Element is not clickable!");
+            }
+
+
+            // Find all Google accounts listed
+            List<WebElement> accounts = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(EmailList_xpath)));
+           
+            System.out.println("Number of accounts:"+ accounts.size());
+          
+            if (accounts.size() >= 1) {
+                accounts.get(0).click(); 
+                System.out.println("✅ Selected the third Google account.");
+                
+                try {
+                    // Wait for a shorter time, as it's an optional element
+                    WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+                    WebElement agreeButton = shortWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Agree_xpath)));
+                    agreeButton.click();
+                    System.out.println("Clicked on the 'Permission Agree' button.");
+                } catch (TimeoutException e) {
+                    System.out.println("Permission button not found. Proceeding without clicking.");
+                    // The test will continue from here
+                }
+                
+                
+            } 
+           
+            
+            Thread.sleep(2000);
+            WebElement date = wait.until(ExpectedConditions.elementToBeClickable(editTextFields.get(1)));
+ //   		WebElement date= wait.until(ExpectedConditions.elementToBeClickable(By.xpath(IncorporationDate_xpath)));
+    		date.click();
+    		
+    		WebElement editDate= wait.until(ExpectedConditions.elementToBeClickable(By.xpath(EditDob_xpath)));
+    		editDate.click();
+    		
+    		WebElement enterDate= wait.until(ExpectedConditions.elementToBeClickable(By.className(EnterDob_xpath)));
+    		enterDate.click();
+    		enterDate.clear();
+    		enterDate.sendKeys("04/10/2000");
+    		
+    		WebElement okButton= wait.until(ExpectedConditions.elementToBeClickable(By.xpath(okButton_xpath)));
+    		okButton.click();
+            
+            
+            
+            
+  /*       
+   	      WebElement option = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(SelectGender_xpath)));
+   	      option.click();
+   	      
+ 
+
+   	PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+   	Sequence scroll = new Sequence(finger, 0);
+
+   	// Start at (500, 1500), move to (500, 500)
+   	scroll.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), 500, 1500));
+   	scroll.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+   	scroll.addAction(finger.createPointerMove(Duration.ofMillis(600), PointerInput.Origin.viewport(), 500, 500));
+   	scroll.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+   	driver.perform(Collections.singletonList(scroll));
+
+   	driver.findElement(By.xpath(FemaleGender_xpath)).click();
+   	      
+   	      driver.hideKeyboard();
+   */           
+            WebElement gender = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Female_xpath)));
+            gender.click();
+            
+//            WebElement continueButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ContinueButton_xpath)));
+            WebElement continueButton = wait.until(ExpectedConditions.elementToBeClickable(new AppiumBy.ByAccessibilityId(Continue_xpath)));
+            continueButton.click();
+	}
+	}
+}
