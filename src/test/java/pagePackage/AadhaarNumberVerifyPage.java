@@ -1,0 +1,92 @@
+package pagePackage;
+
+import java.time.Duration;
+import java.util.Collections;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import basePackage.BaseTest;
+import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
+
+public class AadhaarNumberVerifyPage extends BaseTest{
+	
+	public AadhaarNumberVerifyPage(AndroidDriver driver) {
+		this.driver= driver;
+	}
+
+	String EditTextField_xpath="android.widget.EditText";
+	String RequestOtpButton_xpath="//android.widget.Button[@content-desc='Request OTP']";
+	String OtpNotification_xpath="//android.widget.TextView[contains(@text, 'OTP')]";
+	String AllowButton_xpath="//android.widget.Button[@text='Allow']";
+	String ContinueButton_accessibilityid="Continue";
+	String ContinueButton_xpath="//android.view.View[@content-desc='Continue']";
+	String ConfirmButton_xpath = "//android.widget.Button[@content-desc=\"Confirm\"]";
+	
+	public void AadhaarNumberVerify() throws InterruptedException {
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		List<WebElement> editTextFields = driver.findElements(By.className(EditTextField_xpath));
+        if (!editTextFields.isEmpty()) {
+            WebElement aadhaarField = wait.until(ExpectedConditions.elementToBeClickable(editTextFields.get(0)));
+            aadhaarField.click();
+            aadhaarField.sendKeys("216678990909");
+            driver.hideKeyboard();
+        }
+        
+        Thread.sleep(2000);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ConfirmButton_xpath))).click();
+        
+        
+    /*
+        // Click 'Request OTP'
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(RequestOtpButton_xpath))).click();
+        
+        // Extract OTP from notification panel
+        driver.openNotifications();
+        WebElement otpNotification = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(OtpNotification_xpath)));
+        String notificationText = otpNotification.getText();
+        Pattern otpPattern = Pattern.compile("\\d{4,6}");
+        Matcher matcher = otpPattern.matcher(notificationText);
+        String extractedOtp = matcher.find() ? matcher.group() : "";
+
+        // Close notification panel
+        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+        
+        driver.findElement(By.xpath(AllowButton_xpath)).click();
+
+        // Enter extracted OTP
+        WebElement otpField = wait.until(ExpectedConditions.elementToBeClickable(By.className(EditTextField_xpath)));
+        otpField.sendKeys(extractedOtp);
+        
+        
+     // Click 'Continue' using precise tap
+        try {
+            WebElement continueButton = wait.until(ExpectedConditions.elementToBeClickable(
+                    new AppiumBy.ByAccessibilityId(ContinueButton_accessibilityid)));
+
+            PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+            Sequence tap = new Sequence(finger, 1);
+            tap.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), 540, 1990));
+            tap.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+            tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+            driver.perform(Collections.singletonList(tap));
+        } catch (StaleElementReferenceException e) {
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ContinueButton_xpath))).click();
+        }
+	}
+	*/
+	}
+}

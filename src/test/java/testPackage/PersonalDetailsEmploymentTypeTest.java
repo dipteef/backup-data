@@ -1,0 +1,70 @@
+package testPackage;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+
+import basePackage.BaseTest;
+import io.appium.java_client.android.AndroidDriver;
+import pagePackage.HomeScreenCompleteApplicationPage;
+import pagePackage.LoginPage;
+import pagePackage.OnboardingScreen1Page;
+import pagePackage.PermissionAgreePage;
+import pagePackage.PersonalDetailsDobPage;
+import pagePackage.PersonalDetailsEmploymentTypePage;
+import pagePackage.PersonalDetailsNamePage;
+import pagePackage.PromoPopUpPage;
+import pagePackage.VerifiedOTPPage;
+import pagePackage.VerifyOTPPage;
+
+
+public class PersonalDetailsEmploymentTypeTest extends BaseTest {
+	
+
+@Test
+
+public void Test1() throws InterruptedException {
+
+
+	    OnboardingScreen1Page onboarding= new OnboardingScreen1Page(driver);
+     	onboarding.nextButtonClick();
+    	onboarding.nextButtonClick();
+        onboarding.nextButtonClick();
+        LoginPage mobileNumber= new LoginPage(driver);
+        mobileNumber.enterMobileNumber("9689698026");
+        driver.hideKeyboard();
+
+        VerifyOTPPage otpField= new VerifyOTPPage(driver);
+        otpField.enterOTPAndContinue();
+
+        VerifiedOTPPage verified= new VerifiedOTPPage(driver);
+        verified.verify();
+
+/*		
+        PermissionAgreePage IAgree= new PermissionAgreePage(driver);
+        IAgree.PermissionAgree();
+*/
+
+        PromoPopUpPage popUp= new PromoPopUpPage(driver);
+        popUp.closePopUp();
+
+        HomeScreenCompleteApplicationPage completeApplicationButton= new HomeScreenCompleteApplicationPage(driver);
+        completeApplicationButton.CompleteApplication();
+	
+	    PersonalDetailsNamePage EmailGenderSelection= new PersonalDetailsNamePage(driver);
+	    EmailGenderSelection.Name();
+		
+		PersonalDetailsDobPage DobSelection= new PersonalDetailsDobPage(driver);
+		DobSelection.Dob("25", "Nov", "1995");
+	
+	    PersonalDetailsEmploymentTypePage type= new PersonalDetailsEmploymentTypePage(driver);
+	    type.Employment();
+	
+}	
+	
+}

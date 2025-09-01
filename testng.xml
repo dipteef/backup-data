@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SwipeloanAppTestSuite" verbose="1">
+
+  <test name="OnboardingTests">
+    <classes>
+      <class name="testPackage.Onboardingtest1"/>
+      <class name="testPackage.PanNumberVerifyTest"/>
+      <class name="testPackage.PanNumberConfirmTest"/>
+      <class name="testPackage.PanNumberEditTest"/>
+      <class name="testPackage.AadhaarNumberVerifyTest"/>
+      <class name="testPackage.SelfieVerificationTest"/>
+    </classes>
+  </test>
+
+  <test name="LoanApplicationTests">
+    <classes>
+      <class name="testPackage.PersonalLoanTest"/>
+      <class name="testPackage.HomeLoanTest"/>
+      <class name="testPackage.BusinessLoanTest"/>
+      <class name="testPackage.InstaFundTest"/>
+    </classes>
+  </test>
+
+  <test name="FormTests">
+    <classes>
+      <class name="testPackage.HomeLoanFormTest"/>
+      <class name="testPackage.BusinessLoanFormTest"/>
+      <class name="testPackage.IncomeAmountTest"/>
+      <class name="testPackage.IncomeCompanyDetailsTest"/>
+    </classes>
+  </test>
+
+  <test name="VerificationTests">
+    <classes>
+      <class name="testPackage.VerifyOTPTest"/>
+      <class name="testPackage.LoginTest"/>
+      <class name="testPackage.PermissionAgreeTest"/>
+      <class name="testPackage.UploadBankDetailsTest"/>
+    </classes>
+  </test>
+
+  
+</suite>

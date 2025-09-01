@@ -1,0 +1,53 @@
+package testPackage;
+
+import org.testng.annotations.Test;
+
+import basePackage.BaseTest;
+import pagePackage.ContactUsPage;
+import pagePackage.LogOutPage;
+import pagePackage.LoginPage;
+import pagePackage.OnboardingScreen1Page;
+import pagePackage.ProfilePage;
+import pagePackage.VerifyOTPPage;
+
+public class LogOutTest extends BaseTest{
+	
+@Test
+	
+	public void Test1() throws InterruptedException {
+
+
+		OnboardingScreen1Page onboarding= new OnboardingScreen1Page(driver);
+	    onboarding.nextButtonClick();
+        onboarding.nextButtonClick();
+        onboarding.nextButtonClick();
+        LoginPage mobileNumber= new LoginPage(driver);
+        mobileNumber.enterMobileNumber("9834102082");
+        driver.hideKeyboard();
+
+        VerifyOTPPage otpField= new VerifyOTPPage(driver);
+        otpField.enterOTPAndContinue();
+/*
+        VerifiedOTPPage verified= new VerifiedOTPPage(driver);
+        verified.verify();
+*/
+/*		
+        PermissionAgreePage IAgree= new PermissionAgreePage(driver);
+        IAgree.PermissionAgree();
+*/
+/*
+        PromoPopUpPage popUp= new PromoPopUpPage(driver);
+        popUp.closePopUp();
+  */     
+        Thread.sleep(5000);
+        ProfilePage profile = new ProfilePage(driver);
+        profile.ProfileScreen();
+        
+        Thread.sleep(2000);
+        LogOutPage logout = new LogOutPage(driver);
+        logout.LogOut();
+        
+       }
+	
+
+}

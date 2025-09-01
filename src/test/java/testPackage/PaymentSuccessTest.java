@@ -1,0 +1,60 @@
+package testPackage;
+
+import org.testng.annotations.Test;
+
+import basePackage.BaseTest;
+import pagePackage.CreditScorePlanPage;
+import pagePackage.HomeScreenCheckEligibilityPage;
+import pagePackage.LoginPage;
+import pagePackage.OnboardingScreen1Page;
+import pagePackage.PaymentPayPage;
+import pagePackage.PaymentSuccessPage;
+import pagePackage.PromoPopUpPage;
+import pagePackage.VerifiedOTPPage;
+import pagePackage.VerifyOTPPage;
+
+public class PaymentSuccessTest extends BaseTest{
+	
+@Test
+	
+	public void Test1() throws InterruptedException {
+
+
+		OnboardingScreen1Page onboarding= new OnboardingScreen1Page(driver);
+     	onboarding.nextButtonClick();
+    	onboarding.nextButtonClick();
+        onboarding.nextButtonClick();
+        LoginPage mobileNumber= new LoginPage(driver);
+        mobileNumber.enterMobileNumber("9689698026");
+        driver.hideKeyboard();
+
+        VerifyOTPPage otpField= new VerifyOTPPage(driver);
+        otpField.enterOTPAndContinue();
+/*
+        VerifiedOTPPage verified= new VerifiedOTPPage(driver);
+        verified.verify();
+*/
+/*		
+        PermissionAgreePage IAgree= new PermissionAgreePage(driver);
+        IAgree.PermissionAgree();
+*/
+/*
+        PromoPopUpPage popUp= new PromoPopUpPage(driver);
+        popUp.closePopUp();
+*/		
+		HomeScreenCheckEligibilityPage CheckEligible = new HomeScreenCheckEligibilityPage(driver);
+		CheckEligible.CheckEligibility();
+		
+		CreditScorePlanPage subscribeButton= new CreditScorePlanPage(driver);
+		subscribeButton.Subscribe();
+		
+		PaymentPayPage payButton= new PaymentPayPage(driver);
+		payButton.Pay();
+		
+		PaymentSuccessPage success = new PaymentSuccessPage(driver);
+		success.PaymentSuccess();
+		
+	}
+	
+
+}

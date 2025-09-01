@@ -1,0 +1,148 @@
+package pagePackage;
+
+import java.awt.Rectangle;
+import java.io.File;
+import java.nio.file.Files;
+import java.time.Duration;
+import java.util.NoSuchElementException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+
+
+import basePackage.BaseTest;
+import io.appium.java_client.AppiumBy;
+
+import io.appium.java_client.android.AndroidDriver;
+
+public class InstantFundPage extends BaseTest{
+	
+	public InstantFundPage(AndroidDriver driver) {
+		this.driver= driver;
+	}
+	
+	String InstaFund_xpath = "//android.view.View[@content-desc=\"Insta Funds\"]/android.widget.ImageView";
+	String ConsentCheckbox_xpath = "android.widget.CheckBox";
+	String ExploreOffers_xpath = "//android.widget.Button[@content-desc=\"Explore Offers\"]";
+	String ApplyNow_xpath = "(//android.widget.Button[@content-desc=\"Apply Now\"])[1]";
+
+	public void InstaFund() throws InterruptedException {
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+	   
+	    WebElement instafund= wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ExploreOffers_xpath)));
+	    instafund.click();
+	    
+	    try {
+            // Attempt to find the checkbox element.
+            WebElement checkbox = wait.until(ExpectedConditions.elementToBeClickable(By.className(ConsentCheckbox_xpath)));
+
+            // If found, click it.
+            System.out.println("Checkbox is present. Clicking on it.");
+            checkbox.click();
+
+        } catch (NoSuchElementException e) {
+            // If the checkbox is not found, the NoSuchElementException is caught.
+            System.out.println("Checkbox is not present. Completing the process by clicking the 'Explore Offers' button.");
+    }
+	    
+	   
+	    Thread.sleep(2000);
+	    WebElement offer= wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ExploreOffers_xpath)));
+	    offer.click();
+	    
+	    
+	    Thread.sleep(8000);
+	    WebElement applyLoan= wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ApplyNow_xpath)));
+	    applyLoan.click();
+	    
+	    /*
+	    try {
+	       
+	    	 // 2. Click InstaFund with retry logic
+	        clickWithRetry(wait, By.xpath(InstaFund_xpath), "Insta Funds");
+	        
+	        // 3. Click Explore Offers with multiple locator strategies
+	        clickExploreOffers(wait);
+	        
+	        // 4. Click Apply Now with visibility check
+	        clickApplyNow(wait);
+	        
+	    } catch (Exception e) {
+	        takeScreenshot("instafund_error");
+	        throw new RuntimeException("InstaFund test failed: " + e.getMessage(), e);
+	    }
+	}
+
+	
+
+
+	private void clickWithRetry(WebDriverWait wait, By locator, String elementName) {
+	    final int maxAttempts = 3;
+	    for (int attempt = 1; attempt <= maxAttempts; attempt++) {
+	        try {
+	            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+	            element.click();
+	            return;
+	        } catch (Exception e) {
+	            if (attempt == maxAttempts) throw e;
+	            System.out.println("Retrying click on " + elementName + ", attempt " + attempt);
+	  //          try { Thread.sleep(1000); } catch (InterruptedException ie) { /* ignore */ 
+	
+	/*        }
+
+	    }
+	}
+	*/
+  /*
+	private void clickExploreOffers(WebDriverWait wait) {
+	    try {
+	        // Primary locator
+	        clickWithRetry(wait, By.xpath(ExploreOffers_xpath), "Explore Offers");
+	    } catch (Exception e) {
+	        // Fallback locators
+	        try {
+	            // Try with text contains
+	            clickWithRetry(wait, 
+	                By.xpath("//*[contains(@text,'Explore') or contains(@content-desc,'Explore')]"), 
+	                "Explore Offers (fallback)");
+	        } catch (Exception e2) {
+	            // Scroll and click as last resort
+	            scrollAndClick("Explore Offers", wait);
+	        }
+	    }
+	}
+
+	private void clickApplyNow(WebDriverWait wait) {
+	    // Additional check to ensure page loaded
+	    wait.until(d -> !d.findElements(By.xpath(ApplyNow_xpath)).isEmpty());
+	    clickWithRetry(wait, By.xpath(ApplyNow_xpath), "Apply Now");
+	}
+
+	private void scrollAndClick(String text, WebDriverWait wait) {
+	    driver.findElement(AppiumBy.androidUIAutomator(
+	        "new UiScrollable(new UiSelector().scrollable(true))" +
+	        ".scrollIntoView(new UiSelector().textContains(\"" + text + "\"))"));
+	    
+	    WebElement element = wait.until(ExpectedConditions.elementToBeClickable(
+	        AppiumBy.androidUIAutomator("new UiSelector().textContains(\"" + text + "\")")));
+	    element.click();
+	}
+
+	private void takeScreenshot(String name) {
+	    try {
+	        File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+	        Files.copy(srcFile.toPath(), 
+	            new File(name + "_" + System.currentTimeMillis() + ".png").toPath());
+	    } catch (Exception e) {
+	        System.out.println("Failed to take screenshot: " + e.getMessage());
+	    }
+	    
+	    */
+
+	}
+}

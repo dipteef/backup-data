@@ -1,0 +1,73 @@
+package pagePackage;
+
+import java.time.Duration;
+import java.util.Collections;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import basePackage.BaseTest;
+import io.appium.java_client.android.AndroidDriver;
+
+public class HomeLoanFormPage extends BaseTest{
+
+	public HomeLoanFormPage(AndroidDriver driver) {
+		this.driver= driver;
+	}
+
+	String LoanAmount_xpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[5]/android.widget.EditText[1]";
+	String PropertyValue_xpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[5]/android.widget.EditText[2]";
+	String PropertyCity_xpath ="//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[5]/android.widget.EditText[3]";
+	String PropertyPincode_xpath ="//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[5]/android.widget.EditText[4]";
+	String PropertyType_xpath="//android.widget.Button[@content-desc=\"Select Property Type\"]";
+	String ResalePropertyType_xpath= "//android.view.View[@content-desc=\"Resale Property\"]";
+	String EnterField_xpath= "android.widget.EditText";
+	String ContinueButton_xpath= "//android.widget.Button[@content-desc=\"Continue\"]";
+	
+	
+	public void HomeForm() throws InterruptedException {
+		    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+        	WebElement loanAmount = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(LoanAmount_xpath)));
+        	loanAmount.click();
+            loanAmount.sendKeys("1000000");
+            driver.hideKeyboard();
+        	
+            WebElement propertyType= wait.until(ExpectedConditions.elementToBeClickable(By.xpath(PropertyType_xpath)));
+            propertyType.click();
+            
+            Thread.sleep(2000);
+            WebElement resaleProperty= wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ResalePropertyType_xpath)));
+            resaleProperty.click();
+            driver.hideKeyboard();
+            
+            WebElement propertyValueField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(PropertyValue_xpath)));
+            propertyValueField.click();
+            propertyValueField.sendKeys("1000000");
+            driver.hideKeyboard();
+            
+            WebElement propertyCityField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(PropertyCity_xpath)));
+            propertyCityField.click();
+            propertyCityField.sendKeys("Pune");
+            driver.hideKeyboard();
+            
+            WebElement propertyPincodeField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(PropertyPincode_xpath)));
+            propertyPincodeField.click();
+            propertyPincodeField.sendKeys("411057");
+            driver.hideKeyboard();
+            
+            Thread.sleep(2000);
+            WebElement continueButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ContinueButton_xpath)));
+            continueButton.click();
+            
+        
+        
+	
+		
+	}
+}

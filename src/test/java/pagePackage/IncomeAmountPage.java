@@ -1,0 +1,59 @@
+package pagePackage;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import basePackage.BaseTest;
+import io.appium.java_client.android.AndroidDriver;
+
+public class IncomeAmountPage extends BaseTest {
+	
+	public IncomeAmountPage(AndroidDriver driver) {
+		this.driver= driver;
+	}
+	
+	String EditTextField_xpath= "android.widget.EditText";
+	String SalaryMode_xpath= "//android.widget.Button[@content-desc=\"Select Salary Mode\"]";
+	String SalaryModeBank_xpath= "//android.view.View[@content-desc=\"Bank\"]";
+	String Checkbox_xpath="android.widget.CheckBox";
+	String ConfirmIncomeButton_xpath="//android.widget.Button[@content-desc=\"Confirm Income\"]";
+	
+	public void IncomeAmount() throws InterruptedException {
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+		List<WebElement> editTextFields = driver.findElements(By.className(EditTextField_xpath));
+        System.out.println("Number of EditText fields found: " + editTextFields.size());
+        if (editTextFields.size() >= 1) {
+        	WebElement incomeAmount = wait.until(ExpectedConditions.elementToBeClickable(editTextFields.get(0)));
+        	incomeAmount.click();
+        	incomeAmount.sendKeys("25000");
+        	driver.hideKeyboard();
+        	
+        	WebElement emi = wait.until(ExpectedConditions.elementToBeClickable(editTextFields.get(1)));
+        	emi.click();
+        	emi.sendKeys("0");
+        	driver.hideKeyboard();
+        	
+        	WebElement salaryMode = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(SalaryMode_xpath)));
+            salaryMode.click();
+            Thread.sleep(2000);
+            WebElement bank = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(SalaryModeBank_xpath)));
+            bank.click();
+            driver.hideKeyboard();
+            
+            Thread.sleep(2000);
+            WebElement checkbox = wait.until(ExpectedConditions.elementToBeClickable(By.className(Checkbox_xpath)));
+            checkbox.click();
+            
+            Thread.sleep(2000);
+            WebElement confirmIncomeButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ConfirmIncomeButton_xpath)));
+            confirmIncomeButton.click();
+	}
+	}
+}
